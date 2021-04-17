@@ -4,6 +4,7 @@ import { StyleSheet, Text, View, Alert, ScrollView } from 'react-native';
 import ConfigButton from './ConfigButton';
 import ConfigSalary from './ConfigSalary';
 import ConfigValuation from './ConfigValuation';
+import ConfigBtl from './ConfigBtl';
 import ConfigWork from './ConfigWork';
 import ConfigWorker from './ConfigWorker';
 
@@ -61,7 +62,8 @@ const Config = () => {
                 {config === 'salary' ? <ConfigSalary /> : 
                 (config === 'valuation' ? <ConfigValuation /> : 
                 (config === 'work' ? <ConfigWork /> : 
-                (config === 'worker' ? <ConfigWorker /> : null)))}
+                (config === 'worker' ? <ConfigWorker /> : 
+                (config === 'btl' ? <ConfigBtl /> : null))))}
             </View>
             <View style={styles.bottomContainer}>
                 <ScrollView horizontal>

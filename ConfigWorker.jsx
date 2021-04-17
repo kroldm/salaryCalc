@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import ConfigInput from './ConfigInput';
@@ -6,7 +6,7 @@ import ConfigInput from './ConfigInput';
 const ConfigWorker = () => {
 
     const [keren, setKeren] = useState('2.5');
-    const [rewards, setRewards] = useState('5.0');
+    const [rewards, setRewards] = useState('6.0');
 
     const save = async () => {
         await SecureStore.setItemAsync('kerenWorker', keren);

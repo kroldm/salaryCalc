@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, TextInput, Text } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import ConfigInput from './ConfigInput';

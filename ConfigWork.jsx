@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
 import ConfigInput from './ConfigInput';
@@ -7,8 +7,8 @@ const ConfigWork = () => {
 
     const [kerenCeil, setKerenCeil] = useState('15712');
     const [keren, setKeren] = useState('7.5');
-    const [rewards, setRewards] = useState('5.0');
-    const [compensation, setCompensation] = useState('8.33');
+    const [rewards, setRewards] = useState('6.5');
+    const [compensation, setCompensation] = useState('6.0');
     const [loss, setLoss] = useState('1.0');
 
     const save = async () => {
