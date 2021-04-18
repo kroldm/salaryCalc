@@ -5,13 +5,14 @@ const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
         marginBottom: 10,
+        justifyContent: 'space-between',
     },
     input: {
-        width: 200,
+        width: 150,
         height: 50,
         borderWidth: 1,
         textAlign: 'center',
-        marginRight: 10,
+        marginLeft: 10,
         fontSize: 20,
         color: 'black',
     },
@@ -25,8 +26,8 @@ const ConfigInput = ({ callback, value, text }) => {
 
     return (
         <View style={styles.container}>
-            <TextInput style={styles.input} onChangeText={callback} value={value} placeholder={value} keyboardType='numeric'/>
             <Text style={styles.text}>{text}</Text>
+            <TextInput style={styles.input} onChangeText={callback} value={value} placeholder={value} keyboardType='numeric'/>
         </View>
     );
 }

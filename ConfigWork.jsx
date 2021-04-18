@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { View } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import i18n from 'i18n-js';
 import ConfigInput from './ConfigInput';
 
 const ConfigWork = () => {
@@ -51,11 +52,11 @@ const ConfigWork = () => {
 
     return (
         <View>
-            <ConfigInput callback={setKerenCeil} value={kerenCeil} text='תקרת קרן השתלמות:' />
-            <ConfigInput callback={setKeren} value={keren} text='קרן השתלמות:' />
-            <ConfigInput callback={setRewards} value={rewards} text='תיגמולים:' />
-            <ConfigInput callback={setCompensation} value={compensation} text='פיצויים:' />
-            <ConfigInput callback={setLoss} value={loss} text='אובדן כושר עבודה:' />
+            <ConfigInput callback={setKerenCeil} value={kerenCeil} text={i18n.t('kerenCeil')} />
+            <ConfigInput callback={setKeren} value={keren} text={i18n.t('keren')} />
+            <ConfigInput callback={setRewards} value={rewards} text={i18n.t('rewards')} />
+            <ConfigInput callback={setCompensation} value={compensation} text={i18n.t('compensation')} />
+            <ConfigInput callback={setLoss} value={loss} text={i18n.t('loss')} />
         </View>
     );
 }

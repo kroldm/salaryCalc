@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Switch, Text } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import i18n from 'i18n-js';
 
 const styles = StyleSheet.create({
     container: {
@@ -9,7 +10,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     switch: {
-        marginRight: 10,
+        marginLeft: 10,
     },
     text: {
         fontSize: 20,
@@ -43,6 +44,7 @@ const ConfigBtl = () => {
     return (
         <View>
             <View style={styles.container}>
+                <Text style={styles.text}>{isBtl ? i18n.t('payBtl') : i18n.t('freeBtl')}</Text>
                 <Switch style={styles.switch}
                     trackColor={{ false: 'red', true: 'yellow' }}
                     thumbColor={isBtl ? 'yellow' : 'red'}
@@ -50,7 +52,6 @@ const ConfigBtl = () => {
                     onValueChange={toggleSwitch}
                     value={isBtl}
                 />
-                <Text style={styles.text}>{isBtl ? 'משלם ביטוח לאומי' : 'פטור מתשלום ביטוח לאומי'}</Text>
             </View>
         </View>
     );

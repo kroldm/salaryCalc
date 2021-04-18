@@ -1,7 +1,9 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, Text, View, Alert, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView } from 'react-native';
+import i18n from 'i18n-js';
 import ConfigButton from './ConfigButton';
+import ConfigHours from './ConfigHours';
 import ConfigSalary from './ConfigSalary';
 import ConfigValuation from './ConfigValuation';
 import ConfigBtl from './ConfigBtl';
@@ -34,6 +36,9 @@ const Config = () => {
 
     const [config, setConfig] = useState('');
 
+    const hours = () => {
+        setConfig('hours');
+    };
     const salary = () => {
         setConfig('salary');
     };
@@ -52,9 +57,6 @@ const Config = () => {
     const worker = () => {
         setConfig('worker');
     };
-    const other = () => {
-        setConfig('other');
-    };
 
     return (
         <View style={styles.container}>
@@ -63,17 +65,18 @@ const Config = () => {
                 (config === 'valuation' ? <ConfigValuation /> : 
                 (config === 'work' ? <ConfigWork /> : 
                 (config === 'worker' ? <ConfigWorker /> : 
-                (config === 'btl' ? <ConfigBtl /> : null))))}
+                (config === 'btl' ? <ConfigBtl /> : 
+                (config === 'hours' ? <ConfigHours /> : null)))))}
             </View>
             <View style={styles.bottomContainer}>
                 <ScrollView horizontal>
-                    <ConfigButton callback={salary} title='שכר' />
-                    <ConfigButton callback={valuation} title='שווי מס' />
-                    <ConfigButton callback={tax} title='מס הכנסה' />
-                    <ConfigButton callback={btl} title='ביטוח לאומי' />
-                    <ConfigButton callback={work} title='מעביד' />
-                    <ConfigButton callback={worker} title='עובד' />
-                    <ConfigButton callback={other} title='כללי' />
+                    <ConfigButton callback={hours} title={i18n.t('hoursBtn')} />
+                    <ConfigButton callback={salary} title={i18n.t('salaryBtn')} />
+                    <ConfigButton callback={valuation} title={i18n.t('valuationBtn')} />
+                    <ConfigButton callback={tax} title={i18n.t('taxBtn')} />
+                    <ConfigButton callback={btl} title={i18n.t('btlBtn')} />
+                    <ConfigButton callback={work} title={i18n.t('workBtn')} />
+                    <ConfigButton callback={worker} title={i18n.t('workerBtn')} />
                 </ScrollView>
             </View>
             <StatusBar style="auto" />

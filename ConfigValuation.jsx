@@ -1,27 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, TextInput, Text } from 'react-native';
+import { View } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
+import i18n from 'i18n-js';
 import ConfigInput from './ConfigInput';
-
-const styles = StyleSheet.create({
-    container: {
-        flexDirection: 'row',
-        marginBottom: 10,
-    },
-    input: {
-        width: 200,
-        height: 50,
-        borderWidth: 1,
-        textAlign: 'center',
-        marginRight: 10,
-        fontSize: 20,
-        color: 'black',
-    },
-    text: {
-        fontSize: 20,
-        color: 'blue',
-    },
-});
 
 const ConfigValuation = () => {
 
@@ -71,11 +52,11 @@ const ConfigValuation = () => {
 
     return (
         <View>
-            <ConfigInput callback={setCar} value={car} text='רכב:' />
-            <ConfigInput callback={setFood} value={food} text='ארוחות:' />
-            <ConfigInput callback={setInsurance} value={insurance} text='ביטוח רפואי:' />
-            <ConfigInput callback={setPresent} value={present} text='מתנות:' />
-            <ConfigInput callback={setOtherValuation} value={otherValuation} text='אחר:' />
+            <ConfigInput callback={setCar} value={car} text={i18n.t('car')} />
+            <ConfigInput callback={setFood} value={food} text={i18n.t('food')} />
+            <ConfigInput callback={setInsurance} value={insurance} text={i18n.t('insurance')} />
+            <ConfigInput callback={setPresent} value={present} text={i18n.t('present')} />
+            <ConfigInput callback={setOtherValuation} value={otherValuation} text={i18n.t('otherValuation')} />
         </View>
     );
 }
