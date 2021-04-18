@@ -8,6 +8,8 @@ import Config from './Config';
 i18n.translations = {
   he: { hoursBtn: 'שעות', 
         salaryBtn: 'שכר',  
+        sickBtn: 'מחלה',  
+        vacationBtn: 'חופש',  
         valuationBtn: 'שווי מס', 
         taxBtn: 'מס הכנסה',
         btlBtn: 'ביטוח לאומי',
@@ -15,7 +17,7 @@ i18n.translations = {
         workerBtn: 'עובד',
         global: 'גלובלי', 
         byHour: 'לפי שעה',
-        days: 'ימי עבודה',
+        daysWork: 'ימי עבודה',
         hours100: 'שעות 100%',
         hours125: 'שעות 125%',
         hours150: 'שעות 150%',
@@ -36,6 +38,11 @@ i18n.translations = {
         rewards: 'תיגמולים',
         compensation: 'פיצויים',
         loss: 'אובדן כושר עבודה',
+        daysSick: 'ימי מחלה',
+        daySick1: 'יום מחלה 1',
+        daySick2: 'יום מחלה 2',
+        daySick3: 'יום מחלה 3',
+        daysVacation: 'ימי חופש',
       },
 };
 // Set the locale once at the beginning of your app.

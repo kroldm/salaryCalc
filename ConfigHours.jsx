@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
 
 const ConfigHours = () => {
 
-    const [days, setDays] = useState('22');
+    const [daysWork, setDaysWork] = useState('22');
     const [hours100, setHours100] = useState('185');
     const [hours125, setHours125] = useState('0');
     const [hours150, setHours150] = useState('0');
@@ -33,7 +33,7 @@ const ConfigHours = () => {
     const toggleSwitch = () => setIsMonthly(previousState => !previousState);
 
     const save = async () => {
-        await SecureStore.setItemAsync('days', days);
+        await SecureStore.setItemAsync('daysWork', daysWork);
         await SecureStore.setItemAsync('hours100', hours100);
         await SecureStore.setItemAsync('hours125', hours125);
         await SecureStore.setItemAsync('hours150', hours150);
@@ -42,9 +42,9 @@ const ConfigHours = () => {
         await SecureStore.setItemAsync('isMonthly', isMonthly.toString());
     };
     const read = async () => {
-        let result = await SecureStore.getItemAsync('days');
+        let result = await SecureStore.getItemAsync('daysWork');
         if (result) {
-            setDays(result);
+            setDaysWork(result);
         }
         result = await SecureStore.getItemAsync('hours100');
         if (result) {
@@ -78,7 +78,7 @@ const ConfigHours = () => {
 
     useEffect(() => {
         save();
-    }, [days, hours100, hours125, hours150, hours175, hours200, isMonthly]);
+    }, [daysWork, hours100, hours125, hours150, hours175, hours200, isMonthly]);
 
     return (
         <View>
@@ -94,7 +94,7 @@ const ConfigHours = () => {
             </View>
             {!isMonthly ?
                 <View> 
-                    <ConfigInput callback={setDays} value={days} text={i18n.t('days')} /> 
+                    <ConfigInput callback={setDaysWork} value={daysWork} text={i18n.t('daysWork')} /> 
                     <ConfigInput callback={setHours100} value={hours100} text={i18n.t('hours100')} /> 
                     <ConfigInput callback={setHours125} value={hours125} text={i18n.t('hours125')} /> 
                     <ConfigInput callback={setHours150} value={hours150} text={i18n.t('hours150')} /> 

@@ -5,6 +5,8 @@ import i18n from 'i18n-js';
 import ConfigButton from './ConfigButton';
 import ConfigHours from './ConfigHours';
 import ConfigSalary from './ConfigSalary';
+import ConfigSick from './ConfigSick';
+import ConfigVacation from './ConfigVacation';
 import ConfigValuation from './ConfigValuation';
 import ConfigBtl from './ConfigBtl';
 import ConfigWork from './ConfigWork';
@@ -42,6 +44,12 @@ const Config = () => {
     const salary = () => {
         setConfig('salary');
     };
+    const sick = () => {
+        setConfig('sick');
+    };
+    const vacation = () => {
+        setConfig('vacation');
+    };
     const valuation = () => {
         setConfig('valuation');
     };
@@ -66,12 +74,16 @@ const Config = () => {
                 (config === 'work' ? <ConfigWork /> : 
                 (config === 'worker' ? <ConfigWorker /> : 
                 (config === 'btl' ? <ConfigBtl /> : 
-                (config === 'hours' ? <ConfigHours /> : null)))))}
+                (config === 'hours' ? <ConfigHours /> : 
+                (config === 'sick' ? <ConfigSick /> : 
+                (config === 'vacation' ? <ConfigVacation /> : null)))))))}
             </View>
             <View style={styles.bottomContainer}>
                 <ScrollView horizontal>
                     <ConfigButton callback={hours} title={i18n.t('hoursBtn')} />
                     <ConfigButton callback={salary} title={i18n.t('salaryBtn')} />
+                    <ConfigButton callback={sick} title={i18n.t('sickBtn')} />
+                    <ConfigButton callback={vacation} title={i18n.t('vacationBtn')} />
                     <ConfigButton callback={valuation} title={i18n.t('valuationBtn')} />
                     <ConfigButton callback={tax} title={i18n.t('taxBtn')} />
                     <ConfigButton callback={btl} title={i18n.t('btlBtn')} />
