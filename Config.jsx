@@ -8,6 +8,7 @@ import ConfigSalary from './ConfigSalary';
 import ConfigSick from './ConfigSick';
 import ConfigVacation from './ConfigVacation';
 import ConfigValuation from './ConfigValuation';
+import ConfigTax from './ConfigTax';
 import ConfigBtl from './ConfigBtl';
 import ConfigWork from './ConfigWork';
 import ConfigWorker from './ConfigWorker';
@@ -76,7 +77,8 @@ const Config = () => {
                 (config === 'btl' ? <ConfigBtl /> : 
                 (config === 'hours' ? <ConfigHours /> : 
                 (config === 'sick' ? <ConfigSick /> : 
-                (config === 'vacation' ? <ConfigVacation /> : null)))))))}
+                (config === 'vacation' ? <ConfigVacation /> : 
+                (config === 'tax' ? <ConfigTax /> : null))))))))}
             </View>
             <View style={styles.bottomContainer}>
                 <ScrollView horizontal>

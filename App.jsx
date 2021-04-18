@@ -43,6 +43,16 @@ i18n.translations = {
         daySick2: 'יום מחלה 2',
         daySick3: 'יום מחלה 3',
         daysVacation: 'ימי חופש',
+        israelCitizen: 'אזרח ישראלי',
+        notIsraelCitizen: 'עובד זר',
+        gender: 'מין',
+        man: 'זכר',
+        woman: 'נקבה',
+        familyStatus: 'מצב משפחתי',
+        bachelor: 'רווק/ה',
+        married: 'נשוי/אה',
+        divorcee: 'גרוש/ה',
+        widower: 'אלמן/ה',
       },
 };
 // Set the locale once at the beginning of your app.

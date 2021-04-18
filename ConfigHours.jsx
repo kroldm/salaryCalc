@@ -9,7 +9,7 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 30,
         alignItems: 'center',
-        justifyContent: 'center',
+        justifyContent: 'space-between',
     },
     switch: {
         marginLeft: 10,
