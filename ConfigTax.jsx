@@ -4,6 +4,7 @@ import * as SecureStore from 'expo-secure-store';
 import i18n from 'i18n-js';
 import ConfigPicker from './ConfigPicker';
 import ConfigDatePicker from './ConfigDatePicker';
+import ConfigInput from './ConfigInput';
 
 const genderOptions = [ 'man', 'woman' ];
 const familyStatusOptions = [ 'bachelor', 'married', 'divorcee', 'widower' ];
@@ -36,6 +37,9 @@ const ConfigTax = () => {
     const [immigrationDate, setImmigrationDate] = useState(new Date(0));
     const [armyStartDate, setArmyStartDate] = useState(new Date(0));
     const [armyStopDate, setArmyStopDate] = useState(new Date(0));
+    const [degreeDate, setDegreeDate] = useState(new Date(0));
+
+    const [numChildren, setNumChildren] = useState('0');
 
     const save = async () => {
         await SecureStore.setItemAsync('isCitizen', isCitizen.toString());
@@ -45,6 +49,8 @@ const ConfigTax = () => {
         await SecureStore.setItemAsync('immigrationDate', immigrationDate.toString());
         await SecureStore.setItemAsync('armyStartDate', armyStartDate.toString());
         await SecureStore.setItemAsync('armyStopDate', armyStopDate.toString());
+        await SecureStore.setItemAsync('degreeDate', degreeDate.toString());
+        await SecureStore.setItemAsync('numChildren', numChildren);
     };
     const read = async () => {
         let result = await SecureStore.getItemAsync('isCitizen');
@@ -75,6 +81,14 @@ const ConfigTax = () => {
         if (result) {
             setArmyStopDate(new Date(result));
         }
+        result = await SecureStore.getItemAsync('degreeDate');
+        if (result) {
+            setDegreeDate(new Date(result));
+        }
+        result = await SecureStore.getItemAsync('numChildren');
+        if (result) {
+            setNumChildren(result);
+        }
     };
 
     useEffect(() => {
@@ -83,7 +97,7 @@ const ConfigTax = () => {
 
     useEffect(() => {
         save();
-    }, [isCitizen, gender, familyStatus, birthDay, immigrationDate, armyStartDate, armyStopDate]);
+    }, [isCitizen, gender, familyStatus, birthDay, immigrationDate, armyStartDate, armyStopDate, degreeDate, numChildren]);
 
     return (
         <View>
@@ -98,11 +112,15 @@ const ConfigTax = () => {
                 />
             </View>
             <ConfigPicker callback={setGender} value={gender} text={i18n.t('gender')} options={genderOptions} />
+
             {isCitizen ? <ConfigPicker callback={setFamilyStatus} value={familyStatus} text={i18n.t('familyStatus')} options={familyStatusOptions} /> : null}
             {isCitizen ? <ConfigDatePicker callback={setBirthDay} value={birthDay} text={i18n.t('birthDay')} /> : null}
             {isCitizen ? <ConfigDatePicker callback={setImmigrationDate} value={immigrationDate} text={i18n.t('immigrationDate')} /> : null}
             {isCitizen ? <ConfigDatePicker callback={setArmyStartDate} value={armyStartDate} text={i18n.t('armyStartDate')} /> : null}
             {isCitizen ? <ConfigDatePicker callback={setArmyStopDate} value={armyStopDate} text={i18n.t('armyStopDate')} /> : null}
+            {isCitizen ? <ConfigDatePicker callback={setDegreeDate} value={degreeDate} text={i18n.t('degreeDate')} /> : null}
+
+            <ConfigInput callback={setNumChildren} value={numChildren} text={i18n.t('numChildren')} />
         </View>
     );
 }

@@ -57,6 +57,8 @@ i18n.translations = {
         immigrationDate: 'תאריך עליה',
         armyStartDate: 'תאריך גיוס',
         armyStopDate: 'תאריך שיחרור',
+        degreeDate: 'תאריך סיום תואר',
+        numChildren: 'מספר ילדים',
       },
 };
 // Set the locale once at the beginning of your app.
