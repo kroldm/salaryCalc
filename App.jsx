@@ -53,6 +53,10 @@ i18n.translations = {
         married: 'נשוי/אה',
         divorcee: 'גרוש/ה',
         widower: 'אלמן/ה',
+        birthDay: 'תאריך לידה',
+        immigrationDate: 'תאריך עליה',
+        armyStartDate: 'תאריך גיוס',
+        armyStopDate: 'תאריך שיחרור',
       },
 };
 // Set the locale once at the beginning of your app.
