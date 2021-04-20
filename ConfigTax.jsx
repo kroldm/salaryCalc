@@ -41,8 +41,11 @@ const ConfigTax = () => {
     const [degreeDate, setDegreeDate] = useState(new Date(0));
 
     const [isSpecialTown, setIsSpecialTown] = useState(false);
+    const [isSpouseFoods, setIsSpouseFoods] = useState(false);
+    const [isChildrenFoods, setIsChildrenFoods] = useState(false);
 
-    const [children, setChildren] = useState([]);
+    const [childrenMyHold, setChildrenMyHold] = useState([]);
+    const [childrenNotMyHold, setChildrenNotMyHold] = useState([]);
 
     const save = async () => {
         await SecureStore.setItemAsync('isCitizen', isCitizen.toString());
@@ -54,8 +57,13 @@ const ConfigTax = () => {
         await SecureStore.setItemAsync('armyStopDate', armyStopDate.toString());
         await SecureStore.setItemAsync('degreeDate', degreeDate.toString());
         await SecureStore.setItemAsync('isSpecialTown', isSpecialTown.toString());
-        children.map(async (child, index) => (
-            await SecureStore.setItemAsync(`child${index}`, child.toString())
+        await SecureStore.setItemAsync('isSpouseFoods', isSpouseFoods.toString());
+        await SecureStore.setItemAsync('isChildrenFoods', isChildrenFoods.toString());
+        childrenMyHold.map(async (child, index) => (
+            await SecureStore.setItemAsync(`childMyHold${index}`, child.toString())
+        ));
+        childrenNotMyHold.map(async (child, index) => (
+            await SecureStore.setItemAsync(`childNotMyHold${index}`, child.toString())
         ));
     };
     const read = async () => {
@@ -95,13 +103,28 @@ const ConfigTax = () => {
         if (result) {
             setIsSpecialTown(result === 'true');
         }
+        result = await SecureStore.getItemAsync('isSpouseFoods');
+        if (result) {
+            setIsSpouseFoods(result === 'true');
+        }
+        result = await SecureStore.getItemAsync('isChildrenFoods');
+        if (result) {
+            setIsChildrenFoods(result === 'true');
+        }
         let index = 0;
-        const arr = [];
-        while (result = await SecureStore.getItemAsync(`child${index}`)) {
+        let arr = [];
+        while (result = await SecureStore.getItemAsync(`childMyHold${index}`)) {
             arr.push(new Date(result));
             index+=1;
         }
-        setChildren(arr);
+        setChildrenMyHold(arr);
+        index = 0;
+        arr = [];
+        while (result = await SecureStore.getItemAsync(`childNotMyHold${index}`)) {
+            arr.push(new Date(result));
+            index+=1;
+        }
+        setChildrenNotMyHold(arr);
     };
 
     useEffect(() => {
@@ -110,15 +133,24 @@ const ConfigTax = () => {
 
     useEffect(() => {
         save();
-    }, [isCitizen, gender, familyStatus, birthDay, immigrationDate, armyStartDate, armyStopDate, degreeDate, isSpecialTown, children]);
+    }, [isCitizen, gender, familyStatus, birthDay, immigrationDate, armyStartDate, armyStopDate, degreeDate, isSpecialTown, isSpouseFoods, isChildrenFoods, childrenMyHold, childrenNotMyHold]);
 
-    const addChild = () => {
-        setChildren(prevItems => [...prevItems, new Date(0)]);
+    const addChildMyHold = () => {
+        setChildrenMyHold(prevItems => [...prevItems, new Date(0)]);
     };
-    const updateChild = (currentDate, index) => {
-        let arr = [...children]; // copying the old datas array
+    const updateChildMyHold = (currentDate, index) => {
+        let arr = [...childrenMyHold]; // copying the old datas array
         arr[index] = currentDate; 
-        setChildren(arr);
+        setChildrenMyHold(arr);
+    };
+
+    const addChildNotMyHold = () => {
+        setChildrenNotMyHold(prevItems => [...prevItems, new Date(0)]);
+    };
+    const updateChildNotMyHold = (currentDate, index) => {
+        let arr = [...childrenNotMyHold]; // copying the old datas array
+        arr[index] = currentDate; 
+        setChildrenNotMyHold(arr);
     };
 
     return (
@@ -148,13 +180,24 @@ const ConfigTax = () => {
             {isCitizen ? 
                 <View>
                     <View style={styles.container}>
-                        <Text style={styles.text}>{i18n.t('addChild')}</Text>
-                        <Ionicons name="add" onPress={addChild} size={32} color="green" />
+                        <Text style={styles.text}>{i18n.t('addChildMyHold')}</Text>
+                        <Ionicons name="add" onPress={addChildMyHold} size={32} color="green" />
                     </View>
-                    {children.map((child, index) => (
-                        <ConfigDatePicker key={index} id={index} callback={updateChild} value={child} text={`${i18n.t('child')} ${index+1}`} />
+                    {childrenMyHold.map((child, index) => (
+                        <ConfigDatePicker key={index} id={index} callback={updateChildMyHold} value={child} text={`${i18n.t('child')} ${index+1}`} />
+                    ))}
+
+                    <View style={styles.container}>
+                        <Text style={styles.text}>{i18n.t('addChildNotMyHold')}</Text>
+                        <Ionicons name="add" onPress={addChildNotMyHold} size={32} color="green" />
+                    </View>
+                    {childrenNotMyHold.map((child, index) => (
+                        <ConfigDatePicker key={index} id={index} callback={updateChildNotMyHold} value={child} text={`${i18n.t('child')} ${index+1}`} />
                     ))}
                 </View> : null}
+
+                {isCitizen ? <ConfigCheck callback={setIsSpouseFoods} value={isSpouseFoods} text={i18n.t('spouseFoods')} /> : null}
+                {isCitizen ? <ConfigCheck callback={setIsChildrenFoods} value={isChildrenFoods} text={i18n.t('childrenFoods')} /> : null}
         </View>
     );
 }
