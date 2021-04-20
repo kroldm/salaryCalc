@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const Config = () => { 
+const Config = ({ navigation }) => { 
 
     const [config, setConfig] = useState('');
 
@@ -72,6 +72,10 @@ const Config = () => {
         setConfig('worker');
     };
 
+    const calc = () => {
+        navigation.navigate('Home');
+    };
+
     return (
         <View style={styles.container}>
             <View style={styles.topContainer}>
@@ -100,6 +104,7 @@ const Config = () => {
                     <ConfigButton callback={btl} title={i18n.t('btlBtn')} />
                     <ConfigButton callback={work} title={i18n.t('workBtn')} />
                     <ConfigButton callback={worker} title={i18n.t('workerBtn')} />
+                    <ConfigButton callback={calc} title={i18n.t('calcBtn')} />
                 </ScrollView>
             </View>
             <StatusBar style="auto" />

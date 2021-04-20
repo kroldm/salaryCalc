@@ -7,6 +7,7 @@ import ConfigInput from './ConfigInput';
 const ConfigValuation = () => {
 
     const [car, setCar] = useState('0');
+    const [phone, setPhone] = useState('0');
     const [food, setFood] = useState('0');
     const [insurance, setInsurance] = useState('0');
     const [present, setPresent] = useState('0');
@@ -14,6 +15,7 @@ const ConfigValuation = () => {
 
     const save = async () => {
         await SecureStore.setItemAsync('car', car);
+        await SecureStore.setItemAsync('phone', phone);
         await SecureStore.setItemAsync('food', food);
         await SecureStore.setItemAsync('insurance', insurance);
         await SecureStore.setItemAsync('present', present);
@@ -23,6 +25,10 @@ const ConfigValuation = () => {
         let result = await SecureStore.getItemAsync('car');
         if (result) {
             setCar(result);
+        }
+        result = await SecureStore.getItemAsync('phone');
+        if (result) {
+            setPhone(result);
         }
         result = await SecureStore.getItemAsync('food');
         if (result) {
@@ -48,11 +54,12 @@ const ConfigValuation = () => {
 
     useEffect(() => {
         save();
-    }, [car, food, insurance, present, otherValuation]);
+    }, [car, phone, food, insurance, present, otherValuation]);
 
     return (
         <View>
             <ConfigInput callback={setCar} value={car} text={i18n.t('car')} />
+            <ConfigInput callback={setPhone} value={phone} text={i18n.t('phone')} />
             <ConfigInput callback={setFood} value={food} text={i18n.t('food')} />
             <ConfigInput callback={setInsurance} value={insurance} text={i18n.t('insurance')} />
             <ConfigInput callback={setPresent} value={present} text={i18n.t('present')} />

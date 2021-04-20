@@ -1,12 +1,17 @@
-import { StatusBar } from 'expo-status-bar';
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { View } from 'react-native';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
+import Home from './Home';
 import Config from './Config';
 
 i18n.translations = {
-  he: { hoursBtn: 'שעות', 
+  he: { home: 'תלוש',
+        config: 'הגדרות', 
+        hoursBtn: 'שעות', 
         salaryBtn: 'שכר',  
         sickBtn: 'מחלה',  
         vacationBtn: 'חופש',  
@@ -15,6 +20,8 @@ i18n.translations = {
         btlBtn: 'ביטוח לאומי',
         workBtn: 'מעביד',
         workerBtn: 'עובד',
+        configBtn: 'הגדרות',
+        calcBtn: 'תלוש',
         global: 'גלובלי', 
         byHour: 'לפי שעה',
         daysWork: 'ימי עבודה',
@@ -27,6 +34,7 @@ i18n.translations = {
         extraDay: 'תוספת יומית',
         extraMonth: 'תוספת חודשית',
         car: 'רכב',
+        phone: 'טלפון',
         food: 'ארוחות',
         insurance: 'ביטוח רפואי',
         present: 'מתנות',
@@ -71,18 +79,16 @@ i18n.locale = Localization.locale;
 // When a value is missing from a language it'll fallback to another language with the key present.
 i18n.fallbacks = true;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'red',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+const Stack = createStackNavigator();
 
 const App = () => {
   return (
-    <Config />
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="Home" component={Home} options={{ title: i18n.t('home') }} />
+        <Stack.Screen name="Config" component={Config} options={{ title: i18n.t('config') }} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
