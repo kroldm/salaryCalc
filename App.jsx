@@ -59,7 +59,8 @@ i18n.translations = {
         armyStopDate: 'תאריך שיחרור',
         degreeDate: 'תאריך סיום תואר',
         addChild: 'להוסיף ילד',
-        child: 'ילד',
+        child: 'תאריך לידה ילד',
+        specialTown: 'ישוב מאוחד',
       },
 };
 // Set the locale once at the beginning of your app.

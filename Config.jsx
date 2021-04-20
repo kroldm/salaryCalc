@@ -1,6 +1,7 @@
 import { StatusBar } from 'expo-status-bar';
 import React, { useState } from 'react';
-import { StyleSheet, View, ScrollView } from 'react-native';
+import { StyleSheet, View, ScrollView, SafeAreaView } from 'react-native';
+import Constants from 'expo-constants';
 import i18n from 'i18n-js';
 import ConfigButton from './ConfigButton';
 import ConfigHours from './ConfigHours';
@@ -21,7 +22,7 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
     },
     topContainer: {
-        flex: 4,
+        flex: 5,
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
@@ -32,6 +33,10 @@ const styles = StyleSheet.create({
         backgroundColor: 'white',
         alignItems: 'center',
         justifyContent: 'center',
+    },
+    saveArea: {
+        flex: 1,
+        marginTop: Constants.statusBarHeight,
     },
 });
 
@@ -70,15 +75,19 @@ const Config = () => {
     return (
         <View style={styles.container}>
             <View style={styles.topContainer}>
-                {config === 'salary' ? <ConfigSalary /> : 
-                (config === 'valuation' ? <ConfigValuation /> : 
-                (config === 'work' ? <ConfigWork /> : 
-                (config === 'worker' ? <ConfigWorker /> : 
-                (config === 'btl' ? <ConfigBtl /> : 
-                (config === 'hours' ? <ConfigHours /> : 
-                (config === 'sick' ? <ConfigSick /> : 
-                (config === 'vacation' ? <ConfigVacation /> : 
-                (config === 'tax' ? <ConfigTax /> : null))))))))}
+                <SafeAreaView style={styles.saveArea}>
+                    <ScrollView>
+                        {config === 'salary' ? <ConfigSalary /> : 
+                        (config === 'valuation' ? <ConfigValuation /> : 
+                        (config === 'work' ? <ConfigWork /> : 
+                        (config === 'worker' ? <ConfigWorker /> : 
+                        (config === 'btl' ? <ConfigBtl /> : 
+                        (config === 'hours' ? <ConfigHours /> : 
+                        (config === 'sick' ? <ConfigSick /> : 
+                        (config === 'vacation' ? <ConfigVacation /> : 
+                        (config === 'tax' ? <ConfigTax /> : null))))))))}
+                    </ScrollView>
+                </SafeAreaView>
             </View>
             <View style={styles.bottomContainer}>
                 <ScrollView horizontal>

@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
     },
 });
 
-const ConfigDatePicker = ({ callback, value, text, index }) => {
+const ConfigDatePicker = ({ id, callback, value, text }) => {
 
     const [show, setShow] = useState(false);
     const showDatePicker = () => setShow(true);
@@ -22,7 +22,7 @@ const ConfigDatePicker = ({ callback, value, text, index }) => {
     const onChange = (event, selectedDate) => {
         const currentDate = selectedDate || value;
         setShow(false);
-        callback(currentDate, index);
+        callback(currentDate, id);
     };
 
     return (
@@ -31,7 +31,6 @@ const ConfigDatePicker = ({ callback, value, text, index }) => {
             <Button onPress={showDatePicker} title={`${value.getDate().toString()}/${(value.getMonth()+1).toString()}/${value.getFullYear().toString()}`} color='black' />
             {show &&
                 <DateTimePicker
-                    key={index}
                     value={value}
                     onChange={onChange}
                 />}
