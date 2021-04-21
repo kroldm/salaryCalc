@@ -9,6 +9,7 @@ import ConfigCheck from './ConfigCheck';
 
 const genderOptions = [ 'man', 'woman' ];
 const familyStatusOptions = [ 'bachelor', 'married', 'divorcee', 'widower' ];
+const workOptions = [ 'nurse', 'other' ];
 
 const styles = StyleSheet.create({
     container: {
@@ -33,8 +34,10 @@ const ConfigTax = () => {
 
     const [gender, setGender] = useState('man');
     const [familyStatus, setFamilyStatus] = useState('bachelor');
+    const [work, setWork] = useState('nurse');
 
     const [birthDay, setBirthDay] = useState(new Date(0));
+    const [spouseBirthDay, setSpouseBirthDay] = useState(new Date(0));
     const [immigrationDate, setImmigrationDate] = useState(new Date(0));
     const [armyStartDate, setArmyStartDate] = useState(new Date(0));
     const [armyStopDate, setArmyStopDate] = useState(new Date(0));
@@ -51,7 +54,9 @@ const ConfigTax = () => {
         await SecureStore.setItemAsync('isCitizen', isCitizen.toString());
         await SecureStore.setItemAsync('gender', gender);
         await SecureStore.setItemAsync('familyStatus', familyStatus);
+        await SecureStore.setItemAsync('work', work);
         await SecureStore.setItemAsync('birthDay', birthDay.toString());
+        await SecureStore.setItemAsync('spouseBirthDay', spouseBirthDay.toString());
         await SecureStore.setItemAsync('immigrationDate', immigrationDate.toString());
         await SecureStore.setItemAsync('armyStartDate', armyStartDate.toString());
         await SecureStore.setItemAsync('armyStopDate', armyStopDate.toString());
@@ -79,9 +84,17 @@ const ConfigTax = () => {
         if (result) {
             setFamilyStatus(result);
         }
+        result = await SecureStore.getItemAsync('work');
+        if (result) {
+            setWork(result);
+        }
         result = await SecureStore.getItemAsync('birthDay');
         if (result) {
             setBirthDay(new Date(result));
+        }
+        result = await SecureStore.getItemAsync('spouseBirthDay');
+        if (result) {
+            setSpouseBirthDay(new Date(result));
         }
         result = await SecureStore.getItemAsync('immigrationDate');
         if (result) {
@@ -133,7 +146,7 @@ const ConfigTax = () => {
 
     useEffect(() => {
         save();
-    }, [isCitizen, gender, familyStatus, birthDay, immigrationDate, armyStartDate, armyStopDate, degreeDate, isSpecialTown, isSpouseFoods, isChildrenFoods, childrenMyHold, childrenNotMyHold]);
+    }, [isCitizen, gender, familyStatus, work, birthDay, spouseBirthDay, immigrationDate, armyStartDate, armyStopDate, degreeDate, isSpecialTown, isSpouseFoods, isChildrenFoods, childrenMyHold, childrenNotMyHold]);
 
     const addChildMyHold = () => {
         setChildrenMyHold(prevItems => [...prevItems, new Date(0)]);
@@ -167,9 +180,13 @@ const ConfigTax = () => {
             </View>
 
             <ConfigPicker callback={setGender} value={gender} text={i18n.t('gender')} options={genderOptions} />
+
+            {!isCitizen ? <ConfigPicker callback={setWork} value={work} text={i18n.t('work')} options={workOptions} /> : null}
+
             {isCitizen ? <ConfigPicker callback={setFamilyStatus} value={familyStatus} text={i18n.t('familyStatus')} options={familyStatusOptions} /> : null}
 
             {isCitizen ? <ConfigDatePicker callback={setBirthDay} value={birthDay} text={i18n.t('birthDay')} /> : null}
+            {(isCitizen && familyStatus === 'married') ? <ConfigDatePicker callback={setSpouseBirthDay} value={spouseBirthDay} text={i18n.t('spouseBirthDay')} /> : null}
             {isCitizen ? <ConfigDatePicker callback={setImmigrationDate} value={immigrationDate} text={i18n.t('immigrationDate')} /> : null}
             {isCitizen ? <ConfigDatePicker callback={setArmyStartDate} value={armyStartDate} text={i18n.t('armyStartDate')} /> : null}
             {isCitizen ? <ConfigDatePicker callback={setArmyStopDate} value={armyStopDate} text={i18n.t('armyStopDate')} /> : null}

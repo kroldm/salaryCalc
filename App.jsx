@@ -62,6 +62,7 @@ i18n.translations = {
         divorcee: 'גרוש/ה',
         widower: 'אלמן/ה',
         birthDay: 'תאריך לידה',
+        spouseBirthDay: 'תאריך לידה בן זוג',
         immigrationDate: 'תאריך עליה',
         armyStartDate: 'תאריך גיוס',
         armyStopDate: 'תאריך שיחרור',
@@ -72,6 +73,9 @@ i18n.translations = {
         specialTown: 'גר בישוב מאוחד',
         spouseFoods: 'משלם מזונות לבן זוג',
         childrenFoods: 'משלם מזונות לילדים',
+        work: 'עיסוק',
+        nurse: 'סיעוד',
+        other: 'אחר',
       },
 };
 // Set the locale once at the beginning of your app.
