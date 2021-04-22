@@ -69,6 +69,7 @@ i18n.translations = {
         degreeDate: 'תאריך סיום תואר',
         addChildMyHold: 'ילדים בחזקתי',
         addChildNotMyHold: 'ילדים לא בחזקתי',
+        removeChildren: 'למחוק ילדים',
         child: 'תאריך לידה ילד',
         specialTown: 'גר בישוב מאוחד',
         spouseFoods: 'משלם מזונות לבן זוג',

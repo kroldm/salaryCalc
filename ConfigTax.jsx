@@ -156,7 +156,12 @@ const ConfigTax = () => {
         arr[index] = currentDate; 
         setChildrenMyHold(arr);
     };
-
+    const removeChildrenMyHold = async () => {
+        for (let i = 0; i < childrenMyHold.length; i++) {
+            await SecureStore.deleteItemAsync(`childMyHold${i}`)
+        }
+        setChildrenMyHold([]);
+    };
     const addChildNotMyHold = () => {
         setChildrenNotMyHold(prevItems => [...prevItems, new Date(0)]);
     };
@@ -164,6 +169,12 @@ const ConfigTax = () => {
         let arr = [...childrenNotMyHold]; // copying the old datas array
         arr[index] = currentDate; 
         setChildrenNotMyHold(arr);
+    };
+    const removeChildrenNotMyHold = async () => {
+        for (let i = 0; i < childrenNotMyHold.length; i++) {
+            await SecureStore.deleteItemAsync(`childNotMyHold${i}`)
+        }
+        setChildrenNotMyHold([]);
     };
 
     return (
@@ -203,6 +214,11 @@ const ConfigTax = () => {
                     {childrenMyHold.map((child, index) => (
                         <ConfigDatePicker key={index} id={index} callback={updateChildMyHold} value={child} text={`${i18n.t('child')} ${index+1}`} />
                     ))}
+                    {(childrenMyHold.length > 0) ? 
+                        <View style={styles.container}>
+                            <Text style={styles.text}>{i18n.t('removeChildren')}</Text>
+                            <Ionicons name="remove" onPress={removeChildrenMyHold} size={32} color="green" />
+                        </View> : null}
 
                     <View style={styles.container}>
                         <Text style={styles.text}>{i18n.t('addChildNotMyHold')}</Text>
@@ -211,6 +227,11 @@ const ConfigTax = () => {
                     {childrenNotMyHold.map((child, index) => (
                         <ConfigDatePicker key={index} id={index} callback={updateChildNotMyHold} value={child} text={`${i18n.t('child')} ${index+1}`} />
                     ))}
+                    {(childrenNotMyHold.length > 0) ? 
+                        <View style={styles.container}>
+                            <Text style={styles.text}>{i18n.t('removeChildren')}</Text>
+                            <Ionicons name="remove" onPress={removeChildrenNotMyHold} size={32} color="green" />
+                        </View> : null}
                 </View> : null}
 
                 {isCitizen ? <ConfigCheck callback={setIsSpouseFoods} value={isSpouseFoods} text={i18n.t('spouseFoods')} /> : null}
