@@ -185,11 +185,11 @@ const Home = ({ navigation }) => {
         let extraDay = 0.0;
 
         let daysWork = 0;
-        let hours100 = 0;
-        let hours125 = 0;
-        let hours150 = 0;
-        let hours175 = 0;
-        let hours200 = 0;
+        let hours100 = 0.0;
+        let hours125 = 0.0;
+        let hours150 = 0.0;
+        let hours175 = 0.0;
+        let hours200 = 0.0;
 
         let daysVacation = 0;
 
@@ -222,23 +222,23 @@ const Home = ({ navigation }) => {
             }
             result = await SecureStore.getItemAsync('hours100');
             if (result) {
-                hours100 = parseInt(result);
+                hours100 = parseFloat(result);
             }
             result = await SecureStore.getItemAsync('hours125');
             if (result) {
-                hours125 = parseInt(result);
+                hours125 = parseFloat(result);
             }
             result = await SecureStore.getItemAsync('hours150');
             if (result) {
-                hours150 = parseInt(result);
+                hours150 = parseFloat(result);
             }
             result = await SecureStore.getItemAsync('hours175');
             if (result) {
-                hours175 = parseInt(result);
+                hours175 = parseFloat(result);
             }
             result = await SecureStore.getItemAsync('hours200');
             if (result) {
-                hours200 = parseInt(result);
+                hours200 = parseFloat(result);
             }
 
             result = await SecureStore.getItemAsync('daysVacation');
