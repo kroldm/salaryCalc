@@ -2,7 +2,6 @@ import React from 'react';
 import 'react-native-gesture-handler';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
-import { View } from 'react-native';
 import * as Localization from 'expo-localization';
 import i18n from 'i18n-js';
 import Home from './Home';
@@ -33,6 +32,7 @@ i18n.translations = {
         basic: 'בסיס',
         extraDay: 'תוספת יומית',
         extraMonth: 'תוספת חודשית',
+        travel: 'נסיעות יומית',
         car: 'רכב',
         phone: 'טלפון',
         food: 'ארוחות',
@@ -77,6 +77,17 @@ i18n.translations = {
         work: 'עיסוק',
         nurse: 'סיעוד',
         other: 'אחר',
+        taxPoints: 'נקודות זיכוי',
+        salary: 'משכורת ברוטו',
+        valuation: 'שווי מס',
+        tax: 'מס הכנסה',
+        btl: 'ביטוח לאומי',
+        health: 'ביטוח בריאות',
+        kerenWork: 'קרן השתלמות מעביד',
+        kerenWorker: 'קרן השתלמות עובד',
+        rewardsWork: 'פנסיה מעביד',
+        rewardsWorker: 'פנסיה עובד',
+        salaryNetto: 'משכורת נטו',
       },
 };
 // Set the locale once at the beginning of your app.
