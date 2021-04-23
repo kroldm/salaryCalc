@@ -267,27 +267,27 @@ const Home = ({ navigation }) => {
             sum+=(salaryBasic*1.25*hours125);
             sum+=(salaryBasic*1.5*hours150);
             sum+=(salaryBasic*1.75*hours175);
-            sum+=(salaryBasic*2*hours200);
+            sum+=(salaryBasic*2.0*hours200);
 
             sum+=(daysWork*extraDay);
             sum+=extraMonth;
 
-            sum+=(salaryBasic*9*daysVacation);
+            sum+=(salaryBasic*9.0*daysVacation);
 
             if (daysSick >= 1) {
-                sum+=(salaryBasic*9*(daySick1/100));
+                sum+=(salaryBasic*9.0*(daySick1/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*9*(daySick2/100));
+                sum+=(salaryBasic*9.0*(daySick2/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*9*(daySick3/100));
+                sum+=(salaryBasic*9.0*(daySick3/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*9*daysSick);
+                sum+=(salaryBasic*9.0*daysSick);
             }
         }
 
