@@ -13,11 +13,11 @@ const styles = StyleSheet.create({
         borderWidth: 1,
         textAlign: 'center',
         marginLeft: 10,
-        fontSize: 20,
+        fontSize: 18,
         color: 'black',
     },
     text: {
-        fontSize: 20,
+        fontSize: 18,
         color: 'blue',
     },
 });

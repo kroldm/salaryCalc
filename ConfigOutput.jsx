@@ -8,12 +8,12 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     value: {
-        fontSize: 20,
+        fontSize: 18,
         color: 'black',
         marginLeft: 10,
     },
     text: {
-        fontSize: 20,
+        fontSize: 18,
         color: 'blue',
     },
 });

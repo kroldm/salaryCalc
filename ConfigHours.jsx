@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
         marginLeft: 10,
     },
     text: {
-        fontSize: 20,
+        fontSize: 18,
         color: 'blue',
     },
 });

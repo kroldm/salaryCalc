@@ -47,6 +47,7 @@ const Home = ({ navigation }) => {
     const [rewardsWorker, setRewardsWorker] = useState(0.0);
     const [kerenWork, setKerenWork] = useState(0.0);
     const [kerenWorker, setKerenWorker] = useState(0.0);
+    const [compensationWork, setCompensationWork] = useState(0.0);
     const [salaryNetto, setSalaryNetto] = useState(0.0);
 
     const calcTaxPoints = async () => {
@@ -282,22 +283,22 @@ const Home = ({ navigation }) => {
 
             sum+=(salaryBasic*hours100);
 
-            sum+=(salaryBasic*9.0*daysVacation);
+            sum+=(salaryBasic*8.6*daysVacation);
 
             if (daysSick >= 1) {
-                sum+=(salaryBasic*9.0*(daySick1/100));
+                sum+=(salaryBasic*8.6*(daySick1/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*9.0*(daySick2/100));
+                sum+=(salaryBasic*8.6*(daySick2/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*9.0*(daySick3/100));
+                sum+=(salaryBasic*8.6*(daySick3/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*9.0*daysSick);
+                sum+=(salaryBasic*8.6*daysSick);
             }
 
             setSalarySocial(sum.toFixed(2));
@@ -485,6 +486,21 @@ const Home = ({ navigation }) => {
         setKerenWorker(kerenWorkerCalc.toFixed(2));
     };
 
+    const calcCompensation = async () => {
+        let result;
+        let compensationWorkCalc = 0.0;
+        let percentWork = 0.0;
+
+        result = await SecureStore.getItemAsync('compensationWork');
+        if (result) {
+            percentWork = parseFloat(result);
+        }
+
+        compensationWorkCalc = salarySocial*percentWork/100;
+
+        setCompensationWork(compensationWorkCalc.toFixed(2));
+    };
+
     const calcNetto = async () => {
         let salaryCalc = parseFloat(salary)-parseFloat(tax)-parseFloat(btl)-parseFloat(health)-parseFloat(rewardsWorker)-parseFloat(kerenWorker);
         setSalaryNetto(salaryCalc.toFixed(2));
@@ -498,6 +514,10 @@ const Home = ({ navigation }) => {
 
     useEffect(() => {
         const unsubscribe = navigation.addListener('focus', () => {
+            setTaxPoints(0.0);
+            setSalarySocial(0.0);
+            setSalary(0.0);
+            setValuation(0.0);
             calcTaxPoints();
             calcSalary();
             calcValuation();
@@ -510,15 +530,12 @@ const Home = ({ navigation }) => {
     }, [taxPoints,salary,salarySocial,valuation]);
     useEffect(() => {
         calcBtl();
-    }, [salary,valuation]);
-    useEffect(() => {
         calcHealth();
     }, [salary,valuation]);
     useEffect(() => {
         calcRewards();
-    }, [salarySocial]);
-    useEffect(() => {
         calcKeren();
+        calcCompensation();
     }, [salarySocial]);
     useEffect(() => {
         calcNetto();
@@ -543,6 +560,7 @@ const Home = ({ navigation }) => {
                         <ConfigOutput value={rewardsWorker} text={i18n.t('rewardsWorker')} /> 
                         <ConfigOutput value={kerenWork} text={i18n.t('kerenWork')} /> 
                         <ConfigOutput value={kerenWorker} text={i18n.t('kerenWorker')} /> 
+                        <ConfigOutput value={compensationWork} text={i18n.t('compensationWork')} /> 
                         <ConfigOutput value={salaryNetto} text={i18n.t('salaryNetto')} /> 
                     </ScrollView>
                 </SafeAreaView>
