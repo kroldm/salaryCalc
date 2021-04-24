@@ -18,14 +18,14 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "salarycalc.com"
+      "bundleIdentifier": "salarycalc.krol"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "salarycalc.com"
+      "package": "salarycalc.krol"
     },
     "web": {
       "favicon": "./assets/favicon.png"
