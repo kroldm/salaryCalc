@@ -501,27 +501,28 @@ const Home = ({ navigation }) => {
             calcTaxPoints();
             calcSalary();
             calcValuation();
-            calcTax();
-            calcBtl();
-            calcHealth();
-            calcRewards();
-            calcKeren();
-            calcNetto();
         });
         return unsubscribe;
     }, [navigation]);
 
     useEffect(() => {
         calcTax();
-        calcBtl();
-        calcHealth();
-        calcRewards();
-        calcKeren();
     }, [taxPoints,salary,salarySocial,valuation]);
-
+    useEffect(() => {
+        calcBtl();
+    }, [salary,valuation]);
+    useEffect(() => {
+        calcHealth();
+    }, [salary,valuation]);
+    useEffect(() => {
+        calcRewards();
+    }, [salarySocial]);
+    useEffect(() => {
+        calcKeren();
+    }, [salarySocial]);
     useEffect(() => {
         calcNetto();
-    }, [taxPoints,salary,salarySocial,valuation,tax,btl,health,rewardsWork,kerenWork]);
+    }, [salary,tax,btl,health,rewardsWorker,kerenWorker]);
 
     const config = () => {
         navigation.navigate('Config');
