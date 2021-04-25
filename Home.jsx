@@ -352,6 +352,7 @@ const Home = ({ navigation }) => {
         let result;
         let salaryYear = (parseFloat(salary)+parseFloat(valuation))*12;
         let taxYear = 0.0;
+        let taxMonth = 0.0;
         let rewardsYear = 0.0;
 
         if (salaryYear > 75480.0) {
@@ -392,8 +393,13 @@ const Home = ({ navigation }) => {
         }
 
         taxYear-=(taxPoints*2628.0+rewardsYear);
+        
+        taxMonth = taxYear/12;
+        if (taxMonth < 0.0) {
+            taxMonth = 0.0;     
+        }
 
-        setTax((taxYear/12).toFixed(2));
+        setTax(taxMonth.toFixed(2));
     };
 
     const calcBtl = async () => {
