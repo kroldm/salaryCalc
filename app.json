@@ -18,14 +18,16 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "krol.salarycalc"
+      "bundleIdentifier": "krol.salarycalc",
+      "buildNumber": "2.0.0"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/calc.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "krol.salarycalc"
+      "package": "krol.salarycalc",
+      "versionCode": 2
     },
     "web": {
       "favicon": "./assets/favicon.png"
