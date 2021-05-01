@@ -79,7 +79,7 @@ const ConfigHours = () => {
             <View style={styles.container}>
                 <Text style={styles.text}>{isMonthly ? i18n.t('global') : i18n.t('byHour')}</Text>
                 <Switch style={styles.switch}
-                    trackColor={{ false: 'red', true: 'yellow' }}
+                    trackColor={{ false: 'green', true: 'green' }}
                     thumbColor={isMonthly ? 'yellow' : 'red'}
                     ios_backgroundColor="white"
                     onValueChange={toggleSwitch}

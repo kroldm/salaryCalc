@@ -283,22 +283,22 @@ const Home = ({ navigation }) => {
 
             sum+=(salaryBasic*hours100);
 
-            sum+=(salaryBasic*8.6*daysVacation);
+            sum+=(salaryBasic*8.5*daysVacation);
 
             if (daysSick >= 1) {
-                sum+=(salaryBasic*8.6*(daySick1/100));
+                sum+=(salaryBasic*8.5*(daySick1/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*8.6*(daySick2/100));
+                sum+=(salaryBasic*8.5*(daySick2/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*8.6*(daySick3/100));
+                sum+=(salaryBasic*8.5*(daySick3/100));
             }
             daysSick-=1;
             if (daysSick >= 1) {
-                sum+=(salaryBasic*8.6*daysSick);
+                sum+=(salaryBasic*8.5*daysSick);
             }
 
             setSalarySocial(sum.toFixed(2));
@@ -424,11 +424,14 @@ const Home = ({ navigation }) => {
         let salaryMonth = parseFloat(salary)+parseFloat(valuation);
         let healthCalc = 0.0;
 
-        if (salaryMonth > 6331.0) {
-            healthCalc+=6331.0*0.031;
-            healthCalc+=(salaryMonth-6331.0)*0.05;
-        } else {
-            healthCalc+=salaryMonth*0.031;
+        result = await SecureStore.getItemAsync('isInsurance');
+        if (result === 'true') {
+            if (salaryMonth > 6331.0) {
+                healthCalc+=6331.0*0.031;
+                healthCalc+=(salaryMonth-6331.0)*0.05;
+            } else {
+                healthCalc+=salaryMonth*0.031;
+            }
         }
 
         setHealth(healthCalc.toFixed(2));
@@ -479,8 +482,12 @@ const Home = ({ navigation }) => {
             percentWorker = parseFloat(result);
         }
 
-        if (salarySocial > kerenCeil) {
-            salaryForKeren = kerenCeil;    
+        if (kerenCeil > 0.0) {
+            if (salarySocial > kerenCeil) {
+                salaryForKeren = kerenCeil;    
+            } else {
+                salaryForKeren = salarySocial;    
+            }
         } else {
             salaryForKeren = salarySocial;    
         }
@@ -508,7 +515,20 @@ const Home = ({ navigation }) => {
     };
 
     const calcNetto = async () => {
-        let salaryCalc = parseFloat(salary)-parseFloat(tax)-parseFloat(btl)-parseFloat(health)-parseFloat(rewardsWorker)-parseFloat(kerenWorker);
+        let result;
+        let deduction = 0.0;
+        let salaryCalc = 0.0;
+
+        result = await SecureStore.getItemAsync('foodDeduction');
+        if (result) {
+            deduction+=parseFloat(result);
+        }
+        result = await SecureStore.getItemAsync('otherDeduction');
+        if (result) {
+            deduction+=parseFloat(result);
+        }
+
+        salaryCalc = parseFloat(salary)-parseFloat(tax)-parseFloat(btl)-parseFloat(health)-parseFloat(rewardsWorker)-parseFloat(kerenWorker)-deduction;
         setSalaryNetto(salaryCalc.toFixed(2));
     };
 

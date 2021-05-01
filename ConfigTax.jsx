@@ -182,7 +182,7 @@ const ConfigTax = () => {
             <View style={styles.container}>
                 <Text style={styles.text}>{isCitizen ? i18n.t('israelCitizen') : i18n.t('notIsraelCitizen')}</Text>
                 <Switch style={styles.switch}
-                    trackColor={{ false: 'red', true: 'yellow' }}
+                    trackColor={{ false: 'green', true: 'green' }}
                     thumbColor={isCitizen ? 'yellow' : 'red'}
                     ios_backgroundColor="white"
                     onValueChange={toggleSwitch}

@@ -9,6 +9,7 @@ import ConfigSalary from './ConfigSalary';
 import ConfigSick from './ConfigSick';
 import ConfigVacation from './ConfigVacation';
 import ConfigValuation from './ConfigValuation';
+import ConfigDeduction from './ConfigDeduction';
 import ConfigTax from './ConfigTax';
 import ConfigBtl from './ConfigBtl';
 import ConfigWork from './ConfigWork';
@@ -59,6 +60,9 @@ const Config = ({ navigation }) => {
     const valuation = () => {
         setConfig('valuation');
     };
+    const deduction = () => {
+        setConfig('deduction');
+    };
     const tax = () => {
         setConfig('tax');
     };
@@ -89,7 +93,8 @@ const Config = ({ navigation }) => {
                         (config === 'hours' ? <ConfigHours /> : 
                         (config === 'sick' ? <ConfigSick /> : 
                         (config === 'vacation' ? <ConfigVacation /> : 
-                        (config === 'tax' ? <ConfigTax /> : null))))))))}
+                        (config === 'tax' ? <ConfigTax /> : 
+                        (config === 'deduction' ? <ConfigDeduction /> : null)))))))))}
                     </ScrollView>
                 </SafeAreaView>
             </View>
@@ -100,6 +105,7 @@ const Config = ({ navigation }) => {
                     <ConfigButton callback={sick} title={i18n.t('sickBtn')} />
                     <ConfigButton callback={vacation} title={i18n.t('vacationBtn')} />
                     <ConfigButton callback={valuation} title={i18n.t('valuationBtn')} />
+                    <ConfigButton callback={deduction} title={i18n.t('deductionBtn')} />
                     <ConfigButton callback={tax} title={i18n.t('taxBtn')} />
                     <ConfigButton callback={btl} title={i18n.t('btlBtn')} />
                     <ConfigButton callback={work} title={i18n.t('workBtn')} />
