@@ -55,7 +55,7 @@ const ConfigBtl = () => {
             <View style={styles.container}>
                 <Text style={styles.text}>{isBtl ? i18n.t('payBtl') : i18n.t('freeBtl')}</Text>
                 <Switch style={styles.switch}
-                    trackColor={{ false: 'green', true: 'green' }}
+                    trackColor={{ false: 'black', true: 'black' }}
                     thumbColor={isBtl ? 'yellow' : 'red'}
                     ios_backgroundColor="white"
                     onValueChange={toggleSwitchBtl}
@@ -66,7 +66,7 @@ const ConfigBtl = () => {
             <View style={styles.container}>
                 <Text style={styles.text}>{isInsurance ? i18n.t('payInsurance') : i18n.t('freeInsurance')}</Text>
                 <Switch style={styles.switch}
-                    trackColor={{ false: 'green', true: 'green' }}
+                    trackColor={{ false: 'black', true: 'black' }}
                     thumbColor={isInsurance ? 'yellow' : 'red'}
                     ios_backgroundColor="white"
                     onValueChange={toggleSwitchInsurance}

@@ -182,7 +182,7 @@ const ConfigTax = () => {
             <View style={styles.container}>
                 <Text style={styles.text}>{isCitizen ? i18n.t('israelCitizen') : i18n.t('notIsraelCitizen')}</Text>
                 <Switch style={styles.switch}
-                    trackColor={{ false: 'green', true: 'green' }}
+                    trackColor={{ false: 'black', true: 'black' }}
                     thumbColor={isCitizen ? 'yellow' : 'red'}
                     ios_backgroundColor="white"
                     onValueChange={toggleSwitch}
@@ -203,13 +203,11 @@ const ConfigTax = () => {
             {isCitizen ? <ConfigDatePicker callback={setArmyStopDate} value={armyStopDate} text={i18n.t('armyStopDate')} /> : null}
             {isCitizen ? <ConfigDatePicker callback={setDegreeDate} value={degreeDate} text={i18n.t('degreeDate')} /> : null}
 
-            {isCitizen ? <ConfigCheck callback={setIsSpecialTown} value={isSpecialTown} text={i18n.t('specialTown')} /> : null}
-
             {isCitizen ? 
                 <View>
                     <View style={styles.container}>
                         <Text style={styles.text}>{i18n.t('addChildMyHold')}</Text>
-                        <Ionicons name="add" onPress={addChildMyHold} size={32} color="green" />
+                        <Ionicons name="add" onPress={addChildMyHold} size={32} color="black" />
                     </View>
                     {childrenMyHold.map((child, index) => (
                         <ConfigDatePicker key={index} id={index} callback={updateChildMyHold} value={child} text={`${i18n.t('child')} ${index+1}`} />
@@ -217,12 +215,12 @@ const ConfigTax = () => {
                     {(childrenMyHold.length > 0) ? 
                         <View style={styles.container}>
                             <Text style={styles.text}>{i18n.t('removeChildren')}</Text>
-                            <Ionicons name="remove" onPress={removeChildrenMyHold} size={32} color="green" />
+                            <Ionicons name="remove" onPress={removeChildrenMyHold} size={32} color="black" />
                         </View> : null}
 
                     <View style={styles.container}>
                         <Text style={styles.text}>{i18n.t('addChildNotMyHold')}</Text>
-                        <Ionicons name="add" onPress={addChildNotMyHold} size={32} color="green" />
+                        <Ionicons name="add" onPress={addChildNotMyHold} size={32} color="black" />
                     </View>
                     {childrenNotMyHold.map((child, index) => (
                         <ConfigDatePicker key={index} id={index} callback={updateChildNotMyHold} value={child} text={`${i18n.t('child')} ${index+1}`} />
@@ -230,12 +228,14 @@ const ConfigTax = () => {
                     {(childrenNotMyHold.length > 0) ? 
                         <View style={styles.container}>
                             <Text style={styles.text}>{i18n.t('removeChildren')}</Text>
-                            <Ionicons name="remove" onPress={removeChildrenNotMyHold} size={32} color="green" />
+                            <Ionicons name="remove" onPress={removeChildrenNotMyHold} size={32} color="black" />
                         </View> : null}
                 </View> : null}
 
-                {isCitizen ? <ConfigCheck callback={setIsSpouseFoods} value={isSpouseFoods} text={i18n.t('spouseFoods')} /> : null}
-                {isCitizen ? <ConfigCheck callback={setIsChildrenFoods} value={isChildrenFoods} text={i18n.t('childrenFoods')} /> : null}
+            {isCitizen ? <ConfigCheck callback={setIsSpouseFoods} value={isSpouseFoods} text={i18n.t('spouseFoods')} /> : null}
+            {isCitizen ? <ConfigCheck callback={setIsChildrenFoods} value={isChildrenFoods} text={i18n.t('childrenFoods')} /> : null}
+
+            {isCitizen ? <ConfigCheck callback={setIsSpecialTown} value={isSpecialTown} text={i18n.t('specialTown')} /> : null}
         </View>
     );
 }

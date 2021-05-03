@@ -1,5 +1,6 @@
 import React from 'react';
-import { StyleSheet, View, CheckBox, Text } from 'react-native';
+import { StyleSheet, View, Text } from 'react-native';
+import CheckBox from 'react-native-check-box'
 
 const styles = StyleSheet.create({
     container: {
@@ -8,7 +9,7 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
     },
     checkbox: {
-        alignSelf: "center",
+        marginLeft: 10,
     },
     text: {
         fontSize: 18,
@@ -21,7 +22,7 @@ const ConfigCheck = ({ callback, value, text }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{text}</Text>
-            <CheckBox value={value} onValueChange={callback} style={styles.checkbox} />
+            <CheckBox isChecked={value} onClick={() => callback(!value)} style={styles.checkbox} />
         </View>
     );
 }

@@ -5,7 +5,8 @@ import i18n from 'i18n-js';
 
 const styles = StyleSheet.create({
     container: {
-        flexDirection: 'row',
+        flex: 1,
+        // flexDirection: 'row',
         marginBottom: 10,
         justifyContent: 'space-between',
     },
@@ -14,9 +15,9 @@ const styles = StyleSheet.create({
         color: 'blue',
     },
     picker: {
-        width: 150,
-        height: 50,
-        marginLeft: 10,
+        // width: 150,
+        height: Platform.OS === 'ios' ? 200 : 50,
+        // marginLeft: 10,
     },
 });
 
