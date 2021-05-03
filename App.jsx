@@ -36,7 +36,7 @@ i18n.translations = {
         travel: 'Daily travel',
         car: 'Car',
         phone: 'Phone',
-        food: 'Mael',
+        food: 'Meal',
         insurance: 'Medical insurance',
         present: 'Present',
         otherValuation: 'Other',
