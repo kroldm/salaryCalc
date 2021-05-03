@@ -6,7 +6,7 @@ import i18n from 'i18n-js';
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginBottom: 20,
+        marginBottom: 30,
         alignItems: 'center',
         justifyContent: 'space-between',
     },

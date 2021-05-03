@@ -2,7 +2,7 @@
   "expo": {
     "name": "salaryCalc",
     "slug": "salaryCalc",
-    "version": "1.0.3",
+    "version": "1.0.4",
     "orientation": "portrait",
     "icon": "./assets/calc.png",
     "splash": {
@@ -27,7 +27,7 @@
         "backgroundColor": "#FFFFFF"
       },
       "package": "krol.salarycalc",
-      "versionCode": 3
+      "versionCode": 4
     },
     "web": {
       "favicon": "./assets/favicon.png"

@@ -14,7 +14,7 @@ const workOptions = [ 'nurse', 'other' ];
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
-        marginBottom: 10,
+        marginBottom: 30,
         alignItems: 'center',
         justifyContent: 'space-between',
     },
