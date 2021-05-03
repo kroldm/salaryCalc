@@ -11,6 +11,7 @@ const styles = StyleSheet.create({
     text: {
         fontSize: 18,
         color: 'blue',
+        marginRight: 10,
     },
 });
 
@@ -28,7 +29,7 @@ const ConfigDatePicker = ({ id, callback, value, text }) => {
     return (
         <View style={styles.container}>
             <Text style={styles.text}>{text}</Text>
-            <Button onPress={showDatePicker} title={`${value.getDate().toString()}/${(value.getMonth()+1).toString()}/${value.getFullYear().toString()}`} color='black' />
+            <Button onPress={showDatePicker} title={`${value.getDate().toString()}/${(value.getMonth()+1).toString()}/${value.getFullYear().toString()}`} color='green' />
             {show &&
                 <DateTimePicker
                     value={value}
