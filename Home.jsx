@@ -193,9 +193,7 @@ const Home = ({ navigation }) => {
 
         let salaryBasic = 0.0;
         let extraMonth = 0.0;
-        let extraDay = 0.0;
         let travel = 0.0;
-        let daysWork = 0;
 
         let hours100 = 0.0;
         let hours125 = 0.0;
@@ -218,24 +216,16 @@ const Home = ({ navigation }) => {
         if (result) {
             extraMonth = parseFloat(result);
         }
-        result = await SecureStore.getItemAsync('extraDay');
-        if (result) {
-            extraDay = parseFloat(result);
-        }
         result = await SecureStore.getItemAsync('travel');
         if (result) {
             travel = parseFloat(result);
-        }
-        result = await SecureStore.getItemAsync('daysWork');
-        if (result) {
-            daysWork = parseInt(result);
         }
 
         result = await SecureStore.getItemAsync('isMonthly');
         if (result === 'true') {
             sum+=salaryBasic;
             setSalarySocial(sum.toFixed(2));
-            sum+=(daysWork*travel);
+            sum+=travel;
             sum+=extraMonth;
         } else {
             result = await SecureStore.getItemAsync('hours100');
@@ -308,8 +298,7 @@ const Home = ({ navigation }) => {
             sum+=(salaryBasic*1.75*hours175);
             sum+=(salaryBasic*2.0*hours200);
 
-            sum+=(daysWork*extraDay);
-            sum+=(daysWork*travel);
+            sum+=travel;
             sum+=extraMonth;
         }
 
