@@ -18,7 +18,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "krol.salarycalc",
+      "bundleIdentifier": "com.krol.salarycalc",
       "buildNumber": "1.0.0"
     },
     "android": {
@@ -26,7 +26,7 @@
         "foregroundImage": "./assets/calc.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "krol.salarycalc",
+      "package": "com.krol.salarycalc",
       "versionCode": 5
     },
     "web": {
